@@ -1,0 +1,20 @@
+{
+  "repository": {
+    "name": "string",
+    "primary_language": "string"
+  },
+  "modules": [
+    {
+      "module_name": "string",
+      "files": ["string"]
+    }
+  ],
+  "dependencies": [
+    {
+      "from_module": "string",
+      "to_module": "string",
+      "type": "import | call"
+    }
+  ],
+  "entry_points": ["string"]
+}
