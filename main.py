@@ -11,6 +11,9 @@ from indexing.indexer import Indexer
 from retrieval.keyword_retriever import KeywordRetriever
 from reasoning.prompts.prompt_builder import build_architecture_prompt
 from reasoning.llm_client import run_llm
+import json
+from reasoning.contracts import ArchitectureAnalysis
+
 if __name__ == "__main__":
     repo = load_repo(".")
     print(f"Loaded {len(repo.files)} source files")
@@ -37,9 +40,15 @@ if __name__ == "__main__":
     # print("\n=== PROMPT SENT TO LLM ===\n")
     # print(prompt[:1500])
     analysis_text = run_llm(prompt)
-    print("\n=== RAW LLM OUTPUT ===\n")
-    print(analysis_text)
-    
+    # print("\n=== RAW LLM OUTPUT ===\n")
+    # print(analysis_text)
+    analysis_dict = json.loads(analysis_text)
+    analysis = ArchitectureAnalysis(
+        architecture_summary=analysis_dict["architecture_summary"],
+        design_smells=analysis_dict["design_smells"],
+        scalability_risks=analysis_dict["scalability_risks"]
+    )
+    print(analysis)
 
 
 
