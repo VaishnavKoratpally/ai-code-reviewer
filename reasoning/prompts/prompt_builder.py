@@ -15,23 +15,23 @@ Analyze the provided code excerpts and produce a structured architectural assess
 
 OUTPUT FORMAT (JSON ONLY):
 
-{
+{{
   "architecture_summary": "High-level summary of how the system is structured.",
   "design_smells": [
-    {
+    {{
       "name": "Smell name",
       "evidence": "File or code pattern from context",
       "why_it_matters": "Why this is a problem"
-    }
+    }}
   ],
   "scalability_risks": [
-    {
+    {{
       "name": "Risk name",
       "evidence": "File or code pattern from context",
       "impact_and_mitigation": "Impact + how to fix"
-    }
+    }}
   ]
-}
+}}
 
 
 Rules:

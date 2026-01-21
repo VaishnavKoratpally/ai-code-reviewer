@@ -29,7 +29,7 @@ if __name__ == "__main__":
     for chunk in all_chunks:
         index.add(chunk)
     retriever = KeywordRetriever(index)
-    query = "database connection retry timeout scalability"
+    query = "architecture review design smells scalability risks"
     results = retriever.retrieve(query, top_k=5)
 
     logger.info("\nTop retrieved chunks:\n")
