@@ -9,6 +9,8 @@ from ingest.repo_loader import load_repo
 from chunking.chunk_code import chunk_file
 from indexing.indexer import Indexer
 from retrieval.keyword_retriever import KeywordRetriever
+from retrieval.tf_idf_retriever import TfidfRetriever
+from retrieval.hybrid_retriever import HybridRetriever
 from reasoning.prompts.prompt_builder import build_architecture_prompt
 from reasoning.llm_client import run_llm
 from reasoning.llm_client import parse_with_retry
@@ -28,7 +30,9 @@ if __name__ == "__main__":
     index = Indexer()
     for chunk in all_chunks:
         index.add(chunk)
-    retriever = KeywordRetriever(index)
+    keyword = KeywordRetriever(index)
+    tfidf = TfidfRetriever(index.chunks)
+    retriever = HybridRetriever(keyword, tfidf)
     query = "architecture review design smells scalability risks"
     results = retriever.retrieve(query, top_k=5)
 
